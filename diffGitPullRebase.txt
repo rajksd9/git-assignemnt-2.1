@@ -1,3 +1,48 @@
-Difference between git pull and git pull --rebase
+Question: What is the difference between git pull and git pull --rebase? Do a POC to demonstrate the difference between them.
+- For POC, Create feature branch(feature/diff_git_pull_pullRebase).
+- Do a complete analysis and write it into diffGitPullRebase.txt
 
 
+Answer: 
+
+git pull: This command fetches changes from the remote repository and merges them into our local branch. By default, it uses the merge strategy, creating a new commit to merge the changes.
+
+git pull --rebase: This command also fetches changes from the remote repository, but instead of merging, it rewrites the history of our local branch to appear as if we had applied the remote changes directly after your initial commits. This results in a cleaner and more linear commit history.
+
+
+
+POC:
+
+Firstly we are creating a commit on master branch and then we are creating a new branch (feature/diff_git_pull_pullRebase) where we are making a different commit. Again switching to master branch we are making a commit and then same on the other branch (feature/diff_git_pull_pullRebase).
+At this point of time the git  commit history will be like:
+
+A—--C (master)
+  \
+ B—--E(feature-branch)
+
+
+We also created a commit on the remote repo so that the remote repo will look like : 
+
+A—--C—---D (master)
+  \
+ B—--E(feature-branch)
+
+
+Now  performing git pull  the commit will be like.
+A---C---D (master)
+ \   \
+  B---E---F (feature-branch)
+
+  here F is the merged commit from E and D.
+
+
+
+
+Similarly for git pull –rebase the changes will be like : 
+A—--C—---D (master)
+                    \
+                       B’—--E’(feature-branch)
+
+
+After going through both the graphs we can understand that while using git pull it integrates changes by creating a merge commit and preserves the context of the branch history and merge operations.
+Whereas while using git pull –rebase , it re-applies commits on top of the fetched changes.
