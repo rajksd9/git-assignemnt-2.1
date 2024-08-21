@@ -1,0 +1,24 @@
+Differences between git pull and git merge
+
+1. git pull:
+        It is used to update our local branch with changes from the corresponding remote branch. It is a shorthand command that performs two operations: git fetch followed by git merge.
+
+        Syntax: git pull remoteorigin branch-name
+
+        Example: git pull origin master
+
+        Uses : 
+         1. If there are new commits in both branches i.e our branch and the remote branch, git pull will automatically create a     merge commit to combine them.
+         2. If there are conflicting changes, Git will notify us to resolve conflicts manually before completing the merge. 
+
+2. git merge:
+        It is used to integrate changes from one branch into another within your local repository. It combines the histories of the two branches by creating a new commit that includes changes from both branches.
+
+        Syntax: git merge branch-name
+                here the branch name is the branch that will be merged in the existing branch where the HEAD is pointing.
+        
+        Example: Suppose we are in main branch and we wan to merge a feature/addMessage branch to it. So, we will do the follwoing:
+         git merge feature/addMessage
+
+        Uses:
+        1.To combine changes from different branches within the same repository.
